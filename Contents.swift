@@ -63,8 +63,8 @@ let numeroFloat = Float(numeroInt)
 let numeroDouble = Double(numeroInt)
 print("El numero float \(numeroFloat) y el numero double es \(numeroDouble)")
 
-let edad2 = "23"
-let numeroIntDesdeString = Int(edad2)
+let edad1 = "23"
+let numeroIntDesdeString = Int(edad1)
 print("Edad es \(numeroIntDesdeString)")
 
 
@@ -97,13 +97,6 @@ for i in someInts {
 }
 
 var threeDoubles = Array(repeating: 0.0, count: 3)
-
-// MARK: Control Flow
-let names = ["Anna", "Alex", "Brian", "Jack"]
-for name in names {
-    print("Hello, \(name)!")
-}
-
 
 // MARK: Functions
 func hello() {
@@ -141,7 +134,7 @@ imprimir(resultado: resultadoResta)
 
 
 
-// MARKL Class & Object - Struct
+// MARK: Class & Object - Struct
 // Note: Swift no tiene protected, solo private
 // Clase es un puntero a un Struct
 class Persona {
@@ -174,7 +167,6 @@ class Persona {
     }
 }
 class Profesor: Persona {
-
     var espacialidad: String = ""
     var salario: Int = 930
 
@@ -184,10 +176,8 @@ class Profesor: Persona {
 }
 
 class Alumno: Persona {
-
     var curso: String = ""
     var realizoPago: Bool = true
-
 }
 
 let estudiante = Persona(nombre: "Mario", apellido: "Inga")
@@ -223,4 +213,101 @@ struct Curso {
 var iosBasico = Curso(nombre: "iOS")
 iosBasico.nombre = "Android"
 
+// MARK: Session 2
 
+// MARK: Conditionals
+
+// MARK: IF
+let temperatureInFahrenheit = 90
+if temperatureInFahrenheit <= 32 {
+    print("It's very cold. Consider wearing a scarf")
+} else if temperatureInFahrenheit >= 86 {
+    print("It's really warm. Don't forget to wear sunscreen")
+} else {
+    print("It's not that cold. Wear a t-shirt")
+}
+
+// MARK: IF LET
+var edadString2 = "31"
+
+// Version 1
+var edad2 = Int(edadString2)
+if edad2 != nil {
+    let edadNoNulo = edad2!
+    print("Mi edad es \(edadNoNulo)")
+}
+
+//  Version 2
+var edad3 = Int(edadString2)
+if let edadNoNulo = edad3 {
+    print("Mi edad es: \(edadNoNulo)")
+}
+
+// Version 3
+if let edadNoNulo = Int(edadString2) {
+    print("Mi edad es: \(edadNoNulo)")
+}
+
+// MARK: Guard
+//func convertirANumero(laCadena cadena: String) -> Int {
+//    if !cadena.isEmpty {
+//        if !cadena.contains(".") {
+//            if let numero = Int(cadena) {
+//                return numero
+//            } else {
+//                return 0
+//            }
+//        } else {
+//            return 0
+//        }
+//    } else {
+//        return 0
+//    }
+//}
+// Siguiendo el patron dorado
+func convertirANumero(laCadena cadena: String) -> Int {
+    if cadena.isEmpty {
+        return 0
+    }
+    if cadena.contains(".") {
+        return 0
+    }
+    
+    guard let numero = Int(cadena) else {
+        return 0
+    }
+    print("La cadena se convirtio en el numero: \(numero)")
+    return numero
+}
+
+// MARK: Control Flow
+for index in 1...5 {
+    print("\(index) times 5 is \(index * 5)")
+}
+
+for i in 1..<5 {
+    print("i: \(i)")
+}
+
+let names = ["Anna", "Alex", "Brian", "Jack"]
+for name in names {
+    print("Hello, \(name)!")
+}
+
+// Switch
+// No requiere break, a menos que solo quieras salir
+// Tampoco necesita llaves
+//let diaDeLaSemana = "Jueves"
+//let diaDeLaSemana = "Lunes"
+let diaDeLaSemana = "Miercoles"
+switch diaDeLaSemana {
+case "Lunes":
+    print("Hoy es lunes y toca ir al trabajo")
+    print("Hoy toca menestras con huevo")
+case "Martes", "Miercoles":
+    print("Hoy toca carne")
+case "Jueves":
+    print("Hoy es jueves de pavita ")
+default:
+    print("No hay plan")
+}
